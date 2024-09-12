@@ -1,0 +1,25 @@
+---
+- name: Upgrade FreeBSD packages
+  hosts: freebsd_servers
+  become: yes
+  tasks:
+    - name: Fetch system updates
+      ansible.builtin.command: freebsd-update fetch
+
+    - name: Install system updates
+      ansible.builtin.command: freebsd-update install
+      register: freebsd_update_result
+
+    - name: Update package repository
+      ansible.builtin.command: pkg update
+
+    - name: Upgrade all packages
+      ansible.builtin.command: pkg upgrade -y
+
+
+
+
+
+    - name: Reboot if system update installed
+      ansible.builtin.reboot:
+      when: freebsd_update_result is changed

@@ -1,0 +1,8 @@
+---
+- name: Reapply updates after reboot
+  hosts: freebsd_servers
+  become: yes
+  tasks:
+    - name: Reapply FreeBSD updates if needed
+      ansible.builtin.command: freebsd-update install
+      ignore_errors: yes
