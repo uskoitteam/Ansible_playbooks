@@ -1,3 +1,4 @@
+# do it after reboot
 ---
 - name: Reapply updates after reboot
   hosts: freebsd_servers

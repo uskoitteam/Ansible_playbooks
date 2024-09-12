@@ -18,8 +18,6 @@
 ###
 
 
-
-
     - name: Reboot if system update installed
       ansible.builtin.reboot:
       when: freebsd_update_result is changed
